@@ -46,12 +46,57 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (result === 0) {
-    return `You tie! You both choose ${computerSelection}.`;
+    return 0;
   } else if (result === 1) {
-    return `You won! ${playerSelectionLower} beats ${computerSelection}.`;
+    return 1;
   } else {
-    return `You lose! ${computerSelection} bets ${playerSelectionLower}.`;
+    return 2;
   }
 }
 
 
+function game() {
+  let results = []
+  let playerWins = []
+  let computerWins = []
+
+  alert("Let's play five rounds!");
+  
+  for (let i = 0; i < 5; i++){
+    let playerSelection = prompt("Choose wisely: Rock, Paper or Scissors?");
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+
+    results.push(result)
+
+    if (result === 0) {
+      console.log(`You tie! You both choose ${computerSelection}.`);
+    } else if (result === 1) {
+      console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+    } else {
+      console.log(`You loose! ${computerSelection} beats ${playerSelection}.`);
+    }
+  }
+
+  for (let result of results) {
+    switch (result){
+      case 1:
+        playerWins.push(result);
+        break;
+      case 2:
+        computerWins.push(result);
+        break;
+    }
+  }
+
+  if (playerWins.length > computerWins.length) {
+    console.log("You won! Congratulations!");
+  } else if (playerWins.length < computerWins.length) {
+    console.log("Unfortunately you lost.");
+  } else {
+    console.log("You tied. Play again!")
+  }
+}
+
+
+game()
