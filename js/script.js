@@ -1,18 +1,18 @@
 function getComputerChoice() {
   let choices = ["rock", "paper", "scissors"];
-  let computerChoice = getRandomNumber(3)
-  return choices[computerChoice]
+  let computerChoice = getRandomNumber(3);
+  return choices[computerChoice];
 }
 
-
+// returns a random number from 0 to max
 function getRandomNumber(max) {
-  return Math.floor(Math.random() * max)
+  return Math.floor(Math.random() * max);
 }
 
 
 function playRound(playerSelection, computerSelection) {
   let playerSelectionLower = playerSelection.toLowerCase();
-  let result = null
+  let result = null;
 
   if (playerSelectionLower === computerSelection){
     result = 0;
@@ -56,9 +56,9 @@ function playRound(playerSelection, computerSelection) {
 
 
 function game() {
-  let results = []
-  let playerWins = []
-  let computerWins = []
+  let results = [];
+  let playerWins = [];
+  let computerWins = [];
 
   alert("Let's play five rounds!");
   
@@ -67,7 +67,7 @@ function game() {
     let computerSelection = getComputerChoice();
     let result = playRound(playerSelection, computerSelection);
 
-    results.push(result)
+    results.push(result);
 
     if (result === 0) {
       console.log(`You tie! You both choose ${computerSelection}.`);
@@ -94,9 +94,9 @@ function game() {
   } else if (playerWins.length < computerWins.length) {
     console.log("Unfortunately you lost.");
   } else {
-    console.log("You tied. Play again!")
+    console.log("You tied. Play again!");
   }
 }
 
 
-game()
+game();
