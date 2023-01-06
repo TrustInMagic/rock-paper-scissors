@@ -1,9 +1,8 @@
-rock-paper-scissors
+# rock-paper-scissors
 
-live:
+live: https://trustinmagic.github.io/rock-paper-scissors/
 
 Rock paper scissors game against the computer.
 
 What I learned
-
-how to use switch statements
+- how to use switch statements
