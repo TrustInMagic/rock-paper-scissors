@@ -65,8 +65,6 @@ function playGame(playerSelection, computerSelection) {
   if (playerPoints >= 5 || computerPoints >= 5) {
     showdown(playerPoints, computerPoints);
   }
-
-  console.log(playerPoints, computerPoints)
 }
 
 
@@ -85,6 +83,8 @@ function reset() {
   computerPoints = 0;
   finalResults.textContent = ""
 }
+
+
 
 let playerPoints = 0;
 let computerPoints = 0;

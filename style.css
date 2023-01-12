@@ -1,0 +1,72 @@
+@font-face{
+  font-family: robot;
+  src:url(./fonts/COMPUTERRobot.ttf);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  background-color: black;
+  color: white;
+  /* font-family: robot; */
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+}
+
+h1 {
+  font-size: 70px;
+}
+
+.comments {
+  font-size: 30px;
+  margin-top: -20px
+}
+
+.weapon {
+  font-size: 40px;
+}
+
+.middle {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+}
+
+button {
+  padding: 0;
+  background-color: black;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.score,
+.real-score {
+  display: flex;
+  font-size: 40px;
+  margin-top: 60px;
+  justify-content: center;
+  gap: 30px;
+}
+
+.real-score {
+  margin-top: 50px;
+  display: flex;
+  gap: 70px;
+}
+
+.outcome {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
