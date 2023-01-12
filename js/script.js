@@ -4,13 +4,14 @@ function getComputerChoice() {
   return choices[computerChoice];
 }
 
+
 // returns a random number from 0 to max
 function getRandomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
 
-function playRound(playerSelection, computerSelection) {
+function playGame(playerSelection, computerSelection) {
   let playerSelectionLower = playerSelection.toLowerCase();
   let result = null;
 
@@ -46,57 +47,65 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (result === 0) {
-    return 0;
+    results.textContent = `You tie! You both choose ${computerSelection}.`;
+    humanPoints.textContent = `${playerPoints}`;
+    calculatorPoints.textContent = `${computerPoints}`;
   } else if (result === 1) {
-    return 1;
+    results.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
+    playerPoints++;
+    humanPoints.textContent = `${playerPoints}`;
+    calculatorPoints.textContent = `${computerPoints}`;
   } else {
-    return 2;
+    results.textContent = `You loose! ${computerSelection} beats ${playerSelection}.`;
+    computerPoints++;
+    humanPoints.textContent = `${playerPoints}`;
+    calculatorPoints.textContent = `${computerPoints}`;
   }
+
+  if (playerPoints >= 5 || computerPoints >= 5) {
+    showdown(playerPoints, computerPoints);
+  }
+
+  console.log(playerPoints, computerPoints)
 }
 
 
-function game() {
-  let results = [];
-  let playerWins = [];
-  let computerWins = [];
-
-  alert("Let's play five rounds!");
-  
-  for (let i = 0; i < 5; i++){
-    let playerSelection = prompt("Choose wisely: Rock, Paper or Scissors?");
-    let computerSelection = getComputerChoice();
-    let result = playRound(playerSelection, computerSelection);
-
-    results.push(result);
-
-    if (result === 0) {
-      console.log(`You tie! You both choose ${computerSelection}.`);
-    } else if (result === 1) {
-      console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
-    } else {
-      console.log(`You loose! ${computerSelection} beats ${playerSelection}.`);
-    }
-  }
-
-  for (let result of results) {
-    switch (result){
-      case 1:
-        playerWins.push(result);
-        break;
-      case 2:
-        computerWins.push(result);
-        break;
-    }
-  }
-
-  if (playerWins.length > computerWins.length) {
-    console.log("You won! Congratulations!");
-  } else if (playerWins.length < computerWins.length) {
-    console.log("Unfortunately you lost.");
+function showdown(playerPoints, computerPoints) {
+  if (playerPoints === computerPoints) {
+    finalResults.textContent = "You tied, you live to fight another day"
+  } else if (playerPoints > computerPoints) {
+    finalResults.textContent = "Congratulations, you won the championship!"
   } else {
-    console.log("You tied. Play again!");
+    finalResults.textContent = "Unfortunately you loose, computer wins."
   }
 }
 
+function reset() {
+  playerPoints = 0;
+  computerPoints = 0;
+  finalResults.textContent = ""
+}
 
-game();
+let playerPoints = 0;
+let computerPoints = 0;
+
+let results = document.querySelector(".results");
+let buttons = document.querySelectorAll("button");
+let finalResults = document.querySelector(".final-results");
+let humanPoints = document.querySelector(".player-points");
+let calculatorPoints = document.querySelector(".computer-points")
+
+
+
+for (let button of buttons) {
+  button.addEventListener("click", (e) => playGame(e.target.textContent, getComputerChoice()))
+}
+
+
+
+
+
+
+
+
+
