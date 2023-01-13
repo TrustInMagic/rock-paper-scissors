@@ -64,24 +64,32 @@ function playGame(playerSelection, computerSelection) {
 
   if (playerPoints >= 5 || computerPoints >= 5) {
     showdown(playerPoints, computerPoints);
+    body.removeChild(master);
+    body.appendChild(gameEnd);
+    gameEnd.appendChild(finalResult);
+    gameEnd.appendChild(resetButton);
   }
 }
 
 
 function showdown(playerPoints, computerPoints) {
   if (playerPoints === computerPoints) {
-    finalResults.textContent = "You tied, you live to fight another day"
+    finalResult.textContent = "You tied, you live to fight another day"
   } else if (playerPoints > computerPoints) {
-    finalResults.textContent = "Congratulations, you won the championship!"
+    finalResult.textContent = "Congratulations, you saved the world!"
   } else {
-    finalResults.textContent = "Unfortunately you loose, computer wins."
+    finalResult.textContent = "Unfortunately you loose, computer wins."
   }
 }
 
 function reset() {
   playerPoints = 0;
   computerPoints = 0;
-  finalResults.textContent = ""
+  humanPoints.textContent = "0";
+  calculatorPoints.textContent = "0";
+  body.removeChild(gameEnd);
+  body.appendChild(master);
+
 }
 
 
@@ -91,17 +99,26 @@ let computerPoints = 0;
 
 let results = document.querySelector(".results");
 let buttons = document.querySelectorAll("button");
-let finalResults = document.querySelector(".final-results");
 let humanPoints = document.querySelector(".player-points");
-let calculatorPoints = document.querySelector(".computer-points")
+let calculatorPoints = document.querySelector(".computer-points");
+let body = document.querySelector("body");
+let master = document.querySelector(".master");
+let gameEnd = document.createElement("div");
+let finalResult = document.createElement("div");
+let resetButton = document.createElement("button");
+
+gameEnd.setAttribute("class", "game-end");
+finalResult.setAttribute("class", "final-result");
+resetButton.setAttribute("class", "reset")
+resetButton.textContent = "Play Again";
 
 
 
 for (let button of buttons) {
-  button.addEventListener("click", (e) => playGame(e.target.textContent, getComputerChoice()))
+  button.addEventListener("click", (e) => playGame(e.target.className, getComputerChoice()))
 }
 
-
+resetButton.addEventListener("click", () => reset());
 
 
 
