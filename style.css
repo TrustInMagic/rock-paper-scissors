@@ -96,3 +96,10 @@ img {
   cursor: pointer;
   border-radius: 10px;
 }
+
+.button-press {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 10px #ffc600;
+  transition: all 0.1s;
+}

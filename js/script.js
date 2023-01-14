@@ -51,7 +51,7 @@ function playGame(playerSelection, computerSelection) {
     humanPoints.textContent = `${playerPoints}`;
     calculatorPoints.textContent = `${computerPoints}`;
   } else if (result === 1) {
-    results.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
+    results.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
     playerPoints++;
     humanPoints.textContent = `${playerPoints}`;
     calculatorPoints.textContent = `${computerPoints}`;
@@ -89,16 +89,14 @@ function reset() {
   calculatorPoints.textContent = "0";
   body.removeChild(gameEnd);
   body.appendChild(master);
-
 }
-
 
 
 let playerPoints = 0;
 let computerPoints = 0;
 
 let results = document.querySelector(".results");
-let buttons = document.querySelectorAll("button");
+let buttons = document.querySelectorAll(".middle button");
 let humanPoints = document.querySelector(".player-points");
 let calculatorPoints = document.querySelector(".computer-points");
 let body = document.querySelector("body");
@@ -113,9 +111,16 @@ resetButton.setAttribute("class", "reset")
 resetButton.textContent = "Play Again";
 
 
-
 for (let button of buttons) {
-  button.addEventListener("click", (e) => playGame(e.target.className, getComputerChoice()))
+  button.addEventListener("click", function(e) {
+    playGame(e.target.className, getComputerChoice());
+    // adds "button-press" class to the element being clicked (used for the click animation)
+    e.target.classList.add("button-press");
+  });
+  button.addEventListener("transitionend", function(e){
+    // removes "button-press" class after the transition ended
+    e.target.classList.remove("button-press");
+  });
 }
 
 resetButton.addEventListener("click", () => reset());
