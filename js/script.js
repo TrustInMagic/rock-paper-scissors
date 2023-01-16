@@ -89,6 +89,8 @@ function reset() {
   calculatorPoints.textContent = "0";
   body.removeChild(gameEnd);
   body.appendChild(master);
+  //removes "button-press" class to the <img> element inside the <button> (used to remove the animation)
+  buttons.forEach((button) => button.childNodes.forEach((node) => node.classList.remove("button-press")));
 }
 
 
